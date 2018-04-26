@@ -23,7 +23,6 @@ parser_total =[];
 parser_basic = [];
 parser_deriv_proc =[];
 parser_val_proc =[];
-#parser_val_proc_discard =[];
 section_marker =[];
 holder = [];
 
@@ -33,7 +32,7 @@ with open("o3089762.txt",'r') as reader:
   parser_total.append(line);
 
 print("Parsed BV Log into",len(parser_total),"lines\n");  
-print("Converted BV Log into lines. Hopefully!\n");
+print("Converted BV Log into lines\n");
 
  
 for i in range(0,len(parser_total)):
@@ -78,24 +77,7 @@ for i in range(0,len(parser_val_proc)):
  if "Indicator Question Checks for Patients with modified data" in parser_val_proc[i]:
   #print("Line ",i," is",parser_val_proc[i]);
   section_marker.append(i-2);
-  
-#for i in range(0,3):
- #print(i,section_marker[i]);#Printing section markers
-
-#q = section_marker[2]+1;
-#print (q);
-
  
-#for i in range(q,len(parser_val_proc)):
- #parser_val_proc_discard.append(parser_val_proc[i]);
- 
- 
-#for i in parser_val_proc:
- #if i in parser_val_proc_discard:
-  #parser_val_proc.remove(i);
-
-#for i in parser_val_proc:
- #print(i);
  
 for i in range(0,len(parser_deriv_proc),2):
  proc_holder = Procedures();
@@ -168,13 +150,6 @@ validation_max.duration = validation_procs[0].duration;
 for i in range(0,len(validation_procs)):
  if validation_procs[i].duration > validation_max.duration:
   validation_max=validation_procs[i];
- 
-
-'''for i in derivation_procs:
- print(i.Name," stared at ",i.start_time," and ended at ",i.end_time," and ran for ",i.duration, " seconds");
- 
-for i in validation_procs:
- print(i.Name," stared at ",i.start_time," and ended at ",i.end_time," and ran for ",i.duration, " seconds");'''
  
 holder = parser_total[1].split();
 i = datetime.strptime(((holder[(len(holder)-2)]+ " " +holder[(len(holder)-1)])),"%d-%b-%Y %H:%M:%S");
